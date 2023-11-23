@@ -30,7 +30,8 @@ urlpatterns = [
     path('proyecto/<int:pk>/', views.ProyectoView.as_view(), name='proyecto'),
     #path('contacto/', views.contacto_view, name='contacto'),
     path('contacto/', views.ContactoView.as_view(), name='contacto'),
-    
+    path('proyecto_create/', views.ProyectoCreateView.as_view(), name='proyecto_create'),
+    path('proyecto_update/<int:pk>/', views.ProyectoUpdateView.as_view(), name='proyecto_update'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

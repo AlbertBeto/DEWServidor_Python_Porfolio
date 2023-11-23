@@ -9,7 +9,7 @@
 		{% if proyectos %}
 			{% for proyecto in proyectos %}
 				<div class="col-sm-3">
-					<a href="#" class="p-5">
+					<a href="{% url 'proyecto_update' pk=proyecto.id %}" class="p-5">
 						<div class="card">
 							{% if proyecto.imagen %}
 							<img class="card-img-top" src="{{proyecto.imagen.url}}" alt="{{ proyecto.titulo }}">

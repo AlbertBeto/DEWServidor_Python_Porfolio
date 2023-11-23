@@ -1,6 +1,7 @@
 from django.shortcuts import render # Para FBV
-from django.views.generic import TemplateView # Para CBV
+from django.views.generic import TemplateView, CreateView, UpdateView # Para CBV
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -44,3 +45,12 @@ class ContactoView(TemplateView):
         context['full_name'] = 'Albert Pérez Baleyto'
         return context 
 
+class ProyectoCreateView(CreateView):
+    model = Proyecto
+    fields = ['titulo', 'descripcion', 'fecha_creacion', 'year', 'categorias', 'imagen']
+    success_url = reverse_lazy('home')
+
+class ProyectoUpdateView(UpdateView):
+    model = Proyecto
+    fields = ['titulo', 'descripcion', 'fecha_creacion', 'year', 'categorias', 'imagen']
+    success_url = reverse_lazy('home')

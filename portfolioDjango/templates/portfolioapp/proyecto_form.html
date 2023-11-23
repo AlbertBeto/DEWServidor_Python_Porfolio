@@ -1,0 +1,10 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>{{object|yesno:'Actualizar proyecto,Creación de un nuevo proyecto'}}</h2>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{{object|yesno:'Actualizar,Crear'}}">>
+    </form>
+</div>
+{% endblock %}
