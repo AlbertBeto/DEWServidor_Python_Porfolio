@@ -1,5 +1,5 @@
 from django.shortcuts import render # Para FBV
-from django.views.generic import TemplateView, CreateView, UpdateView # Para CBV
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView # Para CBV
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
@@ -53,4 +53,8 @@ class ProyectoCreateView(CreateView):
 class ProyectoUpdateView(UpdateView):
     model = Proyecto
     fields = ['titulo', 'descripcion', 'fecha_creacion', 'year', 'categorias', 'imagen']
+    success_url = reverse_lazy('home')
+
+class ProyectoDeleteView(DeleteView):
+    model = Proyecto
     success_url = reverse_lazy('home')
