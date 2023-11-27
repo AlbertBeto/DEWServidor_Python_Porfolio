@@ -4,7 +4,10 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from .mixins import ProyectoMixin
-
+from django.contrib import messages
+from django.db import transaction
+from django.utils import timezone
+from notificaciones.models import NotificaProyecto
 # Create your views here.
 
 from .models import Proyecto
@@ -50,6 +53,14 @@ class ContactoView(TemplateView):
 class ProyectoCreateView(ProyectoMixin, CreateView):
     success_message = "Proyecto creado exitosamente"
 
+    def form_valid(self, form):
+        if form.instance.fecha_creacion < timezone.now():
+            messages.error(self.request, "La fecha/hora del proyecto no puede ser anterior a la actual.")
+            return super(ProyectoCreateView, self).form_invalid(form)
+        else:
+            proyecto = form.save()
+            NotificaProyecto.objects.create(proyecto=proyecto)
+            return super(ProyectoCreateView, self).form_valid(form)
     
 
 class ProyectoUpdateView(ProyectoMixin, UpdateView):
