@@ -8,9 +8,10 @@ from django.contrib import messages
 from django.db import transaction
 from django.utils import timezone
 from notificaciones.models import NotificaProyecto
+from portfolioapp.forms import ProyectoForm
 # Create your views here.
 
-from .models import Proyecto
+from .models import Proyecto 
 def home_view(request):
     proyectos = Proyecto.objects.all()
     context={'proyectos': proyectos}
@@ -52,6 +53,7 @@ class ContactoView(TemplateView):
 
 class ProyectoCreateView(ProyectoMixin, CreateView):
     success_message = "Proyecto creado exitosamente"
+    form_class = ProyectoForm
 
     def form_valid(self, form):
         if form.instance.fecha_creacion < timezone.now():
@@ -65,7 +67,7 @@ class ProyectoCreateView(ProyectoMixin, CreateView):
 
 class ProyectoUpdateView(ProyectoMixin, UpdateView):
     success_message = "Proyecto creado exitosamente"
-
+    form_class = ProyectoForm
    
 
 class ProyectoDeleteView(DeleteView):
