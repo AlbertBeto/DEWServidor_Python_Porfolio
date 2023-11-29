@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     
     'portfolioapp',
     'notificaciones',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') #Añadir nueva
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 MESSAGE_TAGS = {messages.ERROR: 'danger'}
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
